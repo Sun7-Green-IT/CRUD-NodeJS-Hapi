@@ -1,0 +1,22 @@
+{
+  "name": "CRUD-NodeJS-Hapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Sun7-Green-IT/CRUD-NodeJS-Hapi.git",
+  "author": "<sylvain.denyse@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "watch": "webpack --watch --mode development",
+    "start": "nodemon dist/main.js",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "common-env": "^6.3.0",
+    "hapi": "^17.7.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
