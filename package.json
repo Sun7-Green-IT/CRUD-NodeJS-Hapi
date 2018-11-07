@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "common-env": "^6.3.0",
-    "hapi": "^17.7.0"
+    "hapi": "^17.7.0",
+    "pg": "^7.6.0"
   },
   "devDependencies": {
     "webpack": "^4.25.1",

@@ -1,6 +1,8 @@
 import { Server } from 'hapi'
 import { config } from './utils/config'
 
+import { roleRoute } from './route/roleRoute'
+
 export default function start() {
   const server = new Server({
     host: config.hapi.host,
