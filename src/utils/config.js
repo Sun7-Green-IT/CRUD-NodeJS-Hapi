@@ -12,7 +12,7 @@ export const config = env().getOrElseAll({
     user: 'green_it',
     host: 'localhost',
     database: 'green_it',
-    password: 'p@ssword',
+    password: 'Sun7-Password',
     port: 5432
   }
 })

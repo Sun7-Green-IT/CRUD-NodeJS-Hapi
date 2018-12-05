@@ -5,7 +5,7 @@ const initDb = () => {
   const db = new Pool({
     user: config.postgres.user,
     host: config.postgres.host,
-    database: config.postgres.api,
+    database: config.postgres.database,
     password: config.postgres.password,
     port: config.postgres.port
   })

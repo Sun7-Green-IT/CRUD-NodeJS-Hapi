@@ -6,8 +6,8 @@ import Boom from 'boom'
 export const userHandler = {
   get: (request, h) => {
     const reply = recover(
-      executeSql(database, 'SELECT * FROM user', []),
-      res => res,
+      executeSql(database, 'SELECT * FROM public.user', []),
+      res => res.rows,
       err => {
         return Boom.badRequest(err)
       }
@@ -15,28 +15,15 @@ export const userHandler = {
     return reply
   },
   add: (request, h) => {
-    const { show_id, minutes, seconds } = request.payload
+    const { firstname, lastname, birthday, email, role_id } = request.payload
 
     const reply = recover(
       executeSql(
         database,
-        'INSERT INTO user (user_id, show_id, minutes, seconds, createdAt) VALUES (?, ?, ?, ?, ?);',
-        [uuidv4(), show_id, minutes, seconds, moment().format()]
+        'INSERT INTO public.user (firstname, lastname, birthday, email, role_id) VALUES (?, ?, ?, ?, ?);',
+        [firstname, lastname, birthday, email, role_id]
       ),
-      res => {
-        recover(
-          executeSql(
-            database,
-            'UPDATE show SET updatedAt = ? WHERE show_id = ?;',
-            [moment().format(), show_id]
-          ),
-          res => res,
-          err => {
-            return Boom.badData(err)
-          }
-        )
-        return res
-      },
+      res => res,
       err => {
         return Boom.conflict(err)
       }
@@ -45,14 +32,14 @@ export const userHandler = {
     return reply
   },
   set: (request, h) => {
-    const { show_id, minutes, seconds } = request.payload
+    const { firstname, lastname, birthday, email, role_id } = request.payload
     const { user_id } = request.params
 
     const reply = recover(
       executeSql(
         database,
-        'UPDATE user SET show_id = ?, minutes = ?, seconds = ?, updatedAt = ? WHERE user_id = ?;',
-        [show_id, minutes, seconds, moment().format(), user_id]
+        'UPDATE public.user SET firstname = ?, lastname = ?, birthday = ?, email = ?, role_id = ? WHERE user_id = ?;',
+        [firstname, lastname, birthday, email, role_id, user_id]
       ),
       res => res,
       err => {
@@ -68,32 +55,10 @@ export const userHandler = {
     const reply = recover(
       executeSql(
         database,
-        'SELECT show_id FROM user WHERE user_id = ?;',
+        'DELETE FROM public.user WHERE user_id = ?;',
         user_id
       ),
-      res => {
-        const show_id = res[0].show_id
-        return recover(
-          executeSql(database, 'DELETE FROM user WHERE user_id = ?;', user_id),
-          res => {
-            recover(
-              executeSql(
-                database,
-                'UPDATE show SET updatedAt = ? WHERE show_id = ?;',
-                [moment().format(), show_id]
-              ),
-              res => res,
-              err => {
-                return Boom.badData(err)
-              }
-            )
-            return res
-          },
-          err => {
-            return Boom.badRequest(err)
-          }
-        )
-      },
+      res => res,
       err => {
         return Boom.badRequest(err)
       }

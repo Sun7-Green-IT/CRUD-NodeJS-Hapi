@@ -2,6 +2,7 @@ import { Server } from 'hapi'
 import { config } from './utils/config'
 
 import { roleRoute } from './route/roleRoute'
+import { userRoute } from './route/userRoute'
 
 export default function start() {
   const server = new Server({
@@ -16,6 +17,9 @@ export default function start() {
       console.error(err)
     }
   )
+
+  roleRoute(server)
+  userRoute(server)
 
   return server
 }
