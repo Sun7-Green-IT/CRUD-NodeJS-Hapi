@@ -1,1 +1,14 @@
 # CRUD-NodeJS-Hapi
+
+`.env`
+
+```bash
+HAPI_HOST=localhost
+HAPI_PORT=4444
+
+POSTGRES_USER=green_it
+POSTGRES_HOST=localhost
+POSTGRES_DATABASE=green_it
+POSTGRES_PASSWORD=Sun7-Password
+POSTGRES_PORT=5432
+```
