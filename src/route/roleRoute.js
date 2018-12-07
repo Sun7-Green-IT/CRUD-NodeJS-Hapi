@@ -8,25 +8,4 @@ export const roleRoute = server => {
       handler: roleHandler.get
     }
   })
-  server.route({
-    method: 'POST',
-    path: '/roles',
-    config: {
-      handler: roleHandler.add
-    }
-  })
-  server.route({
-    method: 'PUT',
-    path: '/roles/{role_id}',
-    config: {
-      handler: roleHandler.set
-    }
-  })
-  server.route({
-    method: 'delete',
-    path: '/roles/{role_id}',
-    config: {
-      handler: roleHandler.remove
-    }
-  })
 }

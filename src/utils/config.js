@@ -5,12 +5,12 @@ export const config = env().getOrElseAll({
     env: 'development'
   },
   hapi: {
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 4444
   },
   postgres: {
     user: 'green_it',
-    host: 'localhost',
+    host: '127.0.0.1',
     database: 'green_it',
     password: 'Sun7-Password',
     port: 5432
