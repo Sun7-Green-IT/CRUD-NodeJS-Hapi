@@ -3,6 +3,9 @@ import { config } from './utils/config'
 
 import { roleRoute } from './route/roleRoute'
 import { userRoute } from './route/userRoute'
+import { fibonnaciRoute } from './route/fibonnaciRoute'
+
+import { recursive_fibonnaci } from './utils/fibonnaci'
 
 export default function start() {
   const server = new Server({
@@ -20,6 +23,7 @@ export default function start() {
 
   roleRoute(server)
   userRoute(server)
+  fibonnaciRoute(server)
 
   return server
 }
